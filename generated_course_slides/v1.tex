@@ -1,0 +1,114 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Red-Black Trees: Insertion and Rebalancing}
+\subtitle{BLG 202E -- Data Structures}
+\author{Deniz Sipahi -- 150230006}
+\date{May 11, 2026}
+\institute{Istanbul Technical University}
+
+\begin{document}
+
+% Slide 1 -- Title
+\begin{frame}
+\titlepage
+\end{frame}
+
+% Slide 2 -- Motivation
+\begin{frame}{1. Motivation -- Why Balance Matters}
+\begin{itemize}
+    \item A \textbf{Binary Search Tree (BST)} supports search, insert, and delete in $O(h)$ time, where $h$ is the tree height.
+    \item In the \textbf{worst case}, a BST degenerates into a linked list: $h = n$, so operations become $O(n)$.
+    \item A \textbf{balanced BST} guarantees $h = O(\log n)$, making all operations efficient.
+    \item \textbf{Red-Black Trees} are one of the most widely used self-balancing BSTs.
+\end{itemize}
+
+\begin{block}{Key Insight}
+Balancing is not free --- it requires extra bookkeeping. Red-Black Trees achieve this through coloring constraints and rotations.
+\end{block}
+\end{frame}
+
+% Slide 3 -- Red-Black Tree Properties
+\begin{frame}{2. Red-Black Tree Properties}
+Every Red-Black Tree satisfies these five invariants:
+\begin{enumerate}
+    \item Every node is either \textcolor{red}{\textbf{RED}} or \textbf{BLACK}.
+    \item The root is always \textbf{BLACK}.
+    \item Every leaf (NIL/null) is \textbf{BLACK}.
+    \item If a node is \textcolor{red}{\textbf{RED}}, then both its children must be \textbf{BLACK}.
+    \item For each node, all simple paths from the node to descendant leaves contain the same number of \textbf{BLACK} nodes.
+\end{enumerate}
+\end{frame}
+
+% Slide 4 -- Node Structure
+\begin{frame}{3. Node Structure}
+Each node in a Red-Black Tree stores:
+\begin{itemize}
+    \item \textbf{Key}: the data value
+    \item \textbf{Color}: RED or BLACK
+    \item \textbf{Left}: pointer to the left child
+    \item \textbf{Right}: pointer to the right child
+    \item \textbf{Parent}: pointer to the parent node
+\end{itemize}
+
+\begin{block}{Representation}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Key} & \textbf{Color} & \textbf{Left} & \textbf{Right} & \textbf{Parent} \\
+\hline
+\end{tabular}
+\end{block}
+\end{frame}
+
+% Slide 5 -- Insertion Base Steps
+\begin{frame}{4. Insertion -- Base Steps}
+Inserting into a Red-Black Tree follows two phases:
+
+\begin{enumerate}
+    \item \textbf{Standard BST Insert}: Insert the new node as a leaf, colored \textcolor{red}{\textbf{RED}}.
+    \item \textbf{Fix-up Phase}: Restore any violated RB-tree properties.
+\end{enumerate}
+
+\vspace{0.5em}
+Possible violations after inserting a RED node:
+\begin{itemize}
+    \item \textbf{Property 2}: The new node might be the root (root must be BLACK).
+    \item \textbf{Property 4}: The new node's parent might also be RED (no two consecutive RED nodes).
+\end{itemize}
+\end{frame}
+
+% Slide 6 -- Fix-up Cases (ALL on one slide)
+\begin{frame}{5. Fix-up Cases}
+After insertion, we check the uncle of the new node:
+
+\textbf{Case 1 -- Uncle is RED:}
+Recolor the parent and uncle to BLACK, and the grandparent to RED. Move the pointer up to the grandparent and repeat.
+
+\textbf{Case 2 -- Uncle is BLACK (zig-zag):}
+The new node is on the opposite side of its parent relative to the grandparent. Perform a rotation on the parent to convert this into Case 3.
+
+\textbf{Case 3 -- Uncle is BLACK (straight line):}
+The new node is on the same side as its parent relative to the grandparent. Rotate on the grandparent and swap colors between the parent and grandparent.
+
+\vspace{0.5em}
+After fix-up, always recolor the root to BLACK.
+\end{frame}
+
+% Slide 7 -- Summary
+\begin{frame}{6. Summary \& Key Takeaways}
+\begin{itemize}
+    \item Red-Black Trees maintain balance through \textbf{3 fix-up cases} after insertion.
+    \item The fix-up process involves \textbf{recoloring} and at most \textbf{2 rotations}.
+    \item All operations run in $O(\log n)$ time.
+\end{itemize}
+
+\begin{block}{Remember}
+Think of the Red-Black Tree as a traffic system: RED means ``stop and check above,'' BLACK means ``all clear.'' Violations propagate upward like escalating a complaint to management.
+\end{block}
+\end{frame}
+
+\end{document}

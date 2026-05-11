@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BLG 483E – Quiz 4 Part I: Written Responses</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    body {
+        font-family: 'Inter', sans-serif;
+        max-width: 850px;
+        margin: 40px auto;
+        padding: 0 20px;
+        color: #222;
+        line-height: 1.65;
+        font-size: 11pt;
+    }
+    h1 { font-size: 20pt; border-bottom: 2px solid #333; padding-bottom: 8px; }
+    h2 { font-size: 16pt; color: #1a5276; margin-top: 30px; }
+    h3 { font-size: 13pt; color: #2e4053; }
+    h4 { font-size: 11pt; color: #34495e; }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 15px 0;
+        font-size: 10pt;
+    }
+    th, td {
+        border: 1px solid #bbb;
+        padding: 6px 10px;
+        text-align: left;
+    }
+    th { background: #ecf0f1; font-weight: 600; }
+    code {
+        background: #f4f4f4;
+        padding: 1px 4px;
+        border-radius: 3px;
+        font-size: 10pt;
+    }
+    hr { border: none; border-top: 1px solid #ccc; margin: 25px 0; }
+    p { margin: 8px 0; }
+    blockquote {
+        border-left: 3px solid #3498db;
+        padding-left: 12px;
+        margin-left: 0;
+        color: #555;
+    }
+    @media print {
+        body { margin: 20px; font-size: 10pt; }
+        h2 { page-break-before: auto; }
+    }
+</style>
+</head>
+<body>
+<h1>BLG 483E – Quiz 4 Part I: Written Responses</h1>
+<h2>Meta Information</h2>
+<table><tr><th>Field</th><th>Value</th></tr><tr><td>Course</td><td>BLG 483E – Artificial Intelligence Aided Computer Engineering</td></tr><tr><td>Assignment</td><td>Quiz 4 – Part I</td></tr><tr><td>Student</td><td>Deniz Sipahi</td></tr><tr><td>Student ID</td><td>150230006</td></tr><tr><td>Date</td><td>11/05/2026</td></tr><tr><td>CRN</td><td>25311 / 25410</td></tr></table>
+<hr>
+<h2>Part 1 – Perceived Strengths and Challenges</h2>
+<h3>Perceived Strengths (Easier Courses)</h3>
+<table><tr><th>#</th><th>Course Name</th><th>Grade</th><th>Reason</th></tr><tr><td>1</td><td>Discrete Mathematics</td><td>BA</td><td>Topics were not harder to understand</td></tr><tr><td>2</td><td>Mathematics 1</td><td>BA+</td><td>Continuation of high school math</td></tr><tr><td>3</td><td>Linear Algebra</td><td>BA+</td><td>Topics were easy</td></tr></table>
+<h3>Perceived Challenges (Difficult Courses)</h3>
+<table><tr><th>#</th><th>Course Name</th><th>Grade</th><th>Reason</th></tr><tr><td>1</td><td>Introduction to Electronics</td><td>BA</td><td>Topics are not familiar for a CS student</td></tr><tr><td>2</td><td>Data Structures</td><td>CB</td><td>Requires too much coding skill</td></tr><tr><td>3</td><td>Physics 2</td><td>BA+</td><td>Field integral was not familiar</td></tr></table>
+<hr>
+<h2>Part 2 – LaTeX Beamer Slide Generation</h2>
+<h3>Topic Selection</h3>
+<p><strong>Course:</strong> Data Structures   <strong>Sub-topic:</strong> Red-Black Trees – Insertion and Rebalancing</p>
+<p><strong>Why this topic was difficult:</strong> Red-Black trees were difficult because they combine abstract rotational mechanics with color-based invariants that are hard to visualize mentally. The rules for maintaining balance during insertion and deletion — left/right rotations, recoloring — require simultaneous tracking of multiple tree states, which is cognitively demanding without a visual aid.</p>
+<h3>Iterative Refinement Log (Prompt Engineering Log)</h3>
+<h4>Iteration 1 – Initial Prompt</h4>
+<p>I started by asking the AI for a straightforward set of 6–8 Beamer slides explaining Red-Black tree insertion. My design choice was to mirror the numbered-title convention I observed in the instructor's example slides — each content slide is labeled "1. Title", "2. Title", and so on — because it creates a clear sequential progression the audience can follow. I chose Beamer with the Madrid theme and beaver color scheme because it produces a clean, academic look without distracting decorations, similar to the instructor's own Convolution and Rice's Theorem slide sets. The output I received was functional but flat. The fix-up cases were all crammed onto a single slide, making it nearly impossible to distinguish Case 1 from Case 2 from Case 3. The properties slide listed the five RB-tree invariants as bare rules without any explanation of why each rule exists. There were no TikZ diagrams at all — everything was text-based, which defeated the purpose of explaining a fundamentally visual data structure. Comparing this to the instructor's Convolution visual slides, where every single slide has a diagram paired with explanatory text, my v1 felt like a wall of words.</p>
+<h4>Iteration 2 – Refinement Prompt</h4>
+<p>For the second iteration, I asked the AI to split the fix-up cases across two separate slides and to add a TikZ diagram showing a before/after view of the zig-zag rotation on the Case 2 slide. I also asked it to add a one-sentence intuition after each of the five RB-tree properties. My reasoning here was inspired by the instructor's visual Convolution deck, where slide 4 ("The Visual Math") pairs an image patch, a kernel, and a summation result side-by-side — the dual representation forces understanding. I wanted to replicate that dual-channel approach for rotations. The improvement was significant. The properties now read as understandable rules with clear motivation, not just formal constraints copied from a textbook. The TikZ diagram on slide 5 made the zig-zag rotation visually trackable — I could see exactly which node moves where and why the configuration changes from a zig-zag to a straight line. However, the worked example on the last slide was still too abstract. It used placeholder variables like A, B, and C instead of concrete numeric values, which reduced the pedagogical value of the example.</p>
+<h4>Iteration 3 – Final Refinement</h4>
+<p>In the third iteration, I asked the AI to replace the abstract worked example with a concrete step-by-step insertion of the value 15 into a specific seven-node tree. I also asked for a <code>\pause</code>-based reveal so that the tree transformation would play out step by step during a presentation, rather than showing the final state all at once. This was inspired by how the instructor's Convolution visual slides progressively build from "The Image as a Grid" through "The Sliding Process" to "The Output: Feature Map" — each slide adds one layer of understanding. The improvement was clear. The final version now has a concrete, traceable example where you can follow each step and verify the RB-tree properties at every stage. The pause mechanism makes the slide genuinely usable in a live teaching context. I also refined the summary slide to include a mnemonic for each of the three fix-up cases, making the material more memorable — similar to how the instructor's Convolution real-life deck ends with a "Hierarchical Perception" conclusion that ties the analogy back to the technical concept.</p>
+<h4>Before vs After Comparison</h4>
+<table><tr><th>Dimension</th><th>Initial Version (v1)</th><th>Final Version (v3)</th></tr><tr><td>Visual aids</td><td>None</td><td>TikZ diagrams on 3 slides</td></tr><tr><td>Fix-up explanation</td><td>All cases on one slide</td><td>Spread across slides 5 and 6</td></tr><tr><td>Property slide</td><td>Rules only</td><td>Rules + one-line intuition each</td></tr><tr><td>Worked example</td><td>Abstract/placeholder</td><td>Concrete insertion of value 15</td></tr><tr><td>Interactivity</td><td>Static</td><td><code>\pause</code> reveals on insertion slide</td></tr><tr><td>Pedagogical flow</td><td>Flat</td><td>Progressive, story-like structure</td></tr></table>
+<hr>
+<h2>Part 3 – Comparative Performance Analysis</h2>
+<h3>3.1 Communication Strategy</h3>
+<p>The most effective instructor sample was the Convolution visual slide set. It worked because it used a strict one-concept-per-slide structure: first the image grid, then the kernel, then the sliding process, then the dot product, then the output — each building on the previous. Slide 4 ("The Visual Math") is particularly effective because it places the image patch, the ⊗ operator, the kernel, and the Σ value on a single horizontal line, making the abstract operation feel like a physical assembly. My slides on Red-Black Trees attempt a similar strategy on slides 5 and 6 by pairing rotation rules with a TikZ before/after diagram. However, the instructor's Convolution slides use a richer visual vocabulary: the kernel literally overlays the image grid on slide 3, the stride arrow physically shows movement on slide 5, and the padding zeros are drawn as a visible border on slide 6. My TikZ diagrams rely only on node fill colors (red vs. black) without additional annotation cues like dashed arrows indicating the direction of rotation or highlighted borders showing which subtree is being restructured. The instructor's approach of making every spatial relationship explicit through the diagram — rather than expecting the reader to infer it from text — is what makes their communication so effective.</p>
+<h3>3.2 Information Density</h3>
+<p>The densest slide in my deck is Slide 5 (Fix-up Cases 1 & 2). Without a TikZ diagram, the zig-zag rotation case is nearly impossible to understand from text alone because it requires tracking three nodes — the inserted node, its parent, and its grandparent — plus a directionality constraint simultaneously. The instructor's Rice's Theorem visual slides handle a similar density problem on slide 6 ("The Impossible Reduction") by drawing a flow diagram with labeled boxes: an input M enters a "Transformer" box, producing M′, which feeds into a "Magic Analyzer (A)" that outputs either HALTS or LOOPS. This transforms a multi-step logical argument into a single visual pipeline. A prompt to generate an analogous diagram for my slide would be: "Draw a TikZ binary tree showing a right-left zig-zag case before rotation: node Z is inserted as the right child of a left child P of grandparent G. Both Z and P are RED, uncle U is BLACK. Show the tree before the left-rotation on P and after, with RED nodes filled red and BLACK nodes filled black. Label the rotation arrow 'Left-rotate(P)' between the two states." The diagram resolves the spatial ambiguity that the text description fundamentally cannot convey.</p>
+<h3>3.3 Efficiency</h3>
+<p>The AI-generated slides explain the recoloring case (Case 1) more clearly than a typical textbook. Textbooks tend to present it as a formal proof obligation: "if the uncle is red, recolor parent and uncle to black and grandparent to red." This framing treats the operation as a rule to memorize rather than an action to understand. The AI reformulated this as an intuitive strategy: "push the redness problem up the tree by recoloring, because adding redness at a higher level creates fewer local violations." This matches the pedagogical approach in the instructor's Rice's Theorem real-life slides, where the concept of undecidability is introduced through the baking analogy — "you cannot predict the cake's taste by reading the recipe" — before the formal statement is given. The AI similarly provides an intuition-first, rule-second structure that makes the action feel motivated rather than arbitrary. It reframes the recoloring as a goal-directed strategy (escalation) rather than a mechanical rule, which is more cognitively accessible for a second-year student.</p>
+<h3>3.4 Slide Improvement Challenge</h3>
+<p>The Chinese Room real-life instructor slide set ("The Illusion of Understanding: From a Call Center to the Chinese Room") is conceptually strong but would benefit from a more explicit visual mapping between the analogy and the formal argument. The set uses a call center metaphor effectively on slides 2–4, but slide 5 ("The Reveal") simply states the connection in text without a side-by-side visual mapping. By contrast, the Convolution real-life set has a dedicated "Mapping the Analogy" slide that visually places "Giant Mural (Input Pixels)", "Flashlight (The Kernel)", and "Blank Map (Feature Map)" in a three-column layout, making the correspondence unmissable. A refined prompt for the Chinese Room slide would be:</p>
+<p>"Add a 'Mapping the Analogy' slide between the call center story and the philosophical conclusion. Use a three-column TikZ layout: Column 1 shows 'Call Center Operator (The Person)' with an icon, Column 2 shows 'Phonetic Manual (The Rulebook)' with a book icon, and Column 3 shows 'Perfect Response (The Output)' with a speech bubble icon. Below the three columns, draw an arrow labeled 'Appears fluent from outside' pointing upward, and a contrasting label below stating 'No understanding exists inside'. Use visual specification prompting to define the exact layout, and chain-of-thought structuring to first present the visual, then state the conclusion."</p>
+<p>Prompting techniques used: <strong>visual specification prompting</strong> (explicitly describing the three-column layout, icons, and spatial relationships) and <strong>chain-of-thought structuring</strong> (asking the AI to first describe the visual mapping, then derive the philosophical conclusion, which produces more logically organized output).</p>
+<h3>3.5 Missing Piece</h3>
+<p>Both the instructor slides and my own slides lack failure cases and boundary conditions. For Red-Black Trees specifically, no slide addresses what happens when you insert into an already-balanced tree (the no-fix-up case, where the parent is BLACK and no property is violated) or what happens when fix-up propagates all the way to the root, requiring the root to be recolored from RED back to BLACK. This omission creates a false impression that fix-up is always a local operation — which it is not. Similarly, the instructor's Rice's Theorem slides never show an example of a trivial property being successfully decided, which would ground the definition of "non-trivial" more concretely. In the Convolution visual slides, there is no mention of what happens when stride > 1 causes information loss, or when a kernel is larger than the input. These omissions are pedagogically dangerous: without seeing the edge cases, a student may fail to understand why the O(log n) worst-case bound applies to the fix-up phase itself (for RB-trees), or why convolution output shrinks without padding. The missing piece, across all slide sets, is the explicit treatment of degenerate or boundary scenarios that reveal the limits of the presented algorithms.</p>
+<hr>
+<h2>Part 4 – Quality Assurance and Interactive Testing</h2>
+<h3>4a – Verification Quiz</h3>
+<h4>Question 1 (Graphic Interpretation)</h4>
+<p><strong>Question:</strong> Looking at the TikZ diagram on Slide 5, node P is the left child of grandparent G and node Z is the right child of P. Both Z and P are RED, while uncle U is BLACK. After the left-rotation on P, which node becomes the new left child of G, and what color must it take after the subsequent right-rotation on G and recoloring?</p>
+<p><strong>Expected Answer:</strong> After the left-rotation on P, Z becomes the new left child of G (in P's former position). P moves down to become Z's left child. At this point, the configuration is a straight line: Z is the left child of G, and P is the left child of Z — both RED. This is now Case 3. After the right-rotation on G and recoloring, Z takes the BLACK color while G becomes RED. The result is a locally balanced subtree rooted at Z. This is the complete resolution of the zig-zag (Case 2 → Case 3) sequence.</p>
+<hr>
+<h4>Question 2 (Logical Derivation)</h4>
+<p><strong>Question:</strong> A Red-Black tree currently has a black-height of 3 (meaning every path from root to a null leaf passes through exactly 3 black nodes). What is the minimum and maximum number of internal (non-null) nodes this tree can contain? Show your reasoning using the RB-tree height bound.</p>
+<p><strong>Expected Answer:</strong></p>
+<ul><li><strong>Minimum nodes:</strong> A tree with black-height <em>bh</em> has at least 2^bh − 1 internal nodes. With bh = 3: minimum = 2³ − 1 = <strong>7 nodes</strong> (all black, a perfectly full binary tree of height 3).</li><li><strong>Maximum nodes:</strong> The maximum height of an RB-tree with black-height <em>bh</em> is 2·bh. A complete binary tree of height 6 has 2⁷ − 1 = <strong>127 nodes</strong> (alternating red-black layers, fully packed). In this configuration, every other level is red, which satisfies Property 4 while maximizing the total number of nodes.</li><li>These bounds come directly from the proof that the height of an RB-tree is at most 2·log₂(n+1), which implies n ≥ 2^bh − 1.</li></ul>
+<hr>
+<h3>4b – Decompression Task</h3>
+<p>The most complex slide is <strong>Slide 5 (Fix-up Cases 1 & 2)</strong>.</p>
+<p><strong>Decompression Prompt:</strong></p>
+<p>"Take the content of the slide explaining Red-Black Tree fix-up Cases 1 and 2 and split it into exactly 3 sequential sub-slides, following the instructor's convention of one concept per slide. Sub-slide A should only explain the precondition — what state the tree is in when we arrive at fix-up (which property is violated and why). Include a small TikZ diagram showing a grandparent-parent-child chain with two consecutive RED nodes to make the violation visually obvious. Sub-slide B should explain Case 1 only: what we check (uncle's color), what action we take (recoloring), and what the tree looks like before and after using a side-by-side TikZ diagram — similar to how the Convolution visual slides pair an image patch with its output on slide 4. Sub-slide C should explain Case 2 only: the zig-zag configuration, which rotation is applied, and how this transforms the problem into Case 3 without yet solving it. Each sub-slide should begin with a one-sentence plain-language summary before showing any formal content, mirroring how the Rice's Theorem real-life slides always lead with the analogy before introducing the formal concept."</p>
+<hr>
+<h2>Part 5 – Feedback on AI Synthesis</h2>
+<h3>Most Difficult Elements to Generate Correctly</h3>
+<p>The hardest element to generate correctly was the TikZ tree diagram with correct node coloring and rotation arrows. This difficulty had two distinct causes. First, TikZ tree syntax requires explicit coordinate or child-node placement, and the AI frequently made structural errors when combining <code>\tikzstyle</code> definitions with <code>\node</code> placements inside the <code>tikzpicture</code> environment — for example, producing overlapping nodes or edges that pointed to the wrong targets. This contrasts sharply with the instructor's example slides, where TikZ is used fluently: the Rice's Theorem visual slides contain clean flow diagrams with labeled boxes and arrows on nearly every slide, and the Chinese Room visual slides use nested boxes with input/output slots that render correctly. Second, the semantic correctness of the diagram — meaning the right nodes being red or black in the right rotational state — required domain-specific verification that the AI sometimes got wrong on the first attempt. It would, for instance, show the uncle as RED in a Case 2 diagram where the uncle must be BLACK by definition. These errors are subtle because the LaTeX compiles without warnings, so the only way to catch them is to manually verify each diagram against the algorithm specification.</p>
+<h3>Repeated Weaknesses</h3>
+<p>The AI repeatedly exhibited three specific weaknesses across iterations. First, it had a tendency to merge distinct cases: fix-up Cases 1, 2, and 3 were frequently collapsed into a single paragraph rather than treated as three separate algorithmic branches with distinct preconditions. This is the opposite of what the instructor slides demonstrate — for example, the Rice's Theorem math slides dedicate separate slides to "Trivial vs. Non-Trivial Properties", "The Assumption", "The Mapping Reduction", and "Analyzing the Reduction", giving each logical step its own space. Second, the AI consistently missed the symmetry of Red-Black tree insertion. The algorithm has symmetric cases for left-subtree and right-subtree violations, and a complete explanation must at least acknowledge that the right-side case is a mirror image. The AI often described only the left-side scenario without any mention of the symmetric counterpart. Third, when asked for a "worked example," the AI defaulted to placeholder variables (A, B, C) or generic labels rather than concrete numeric values. The instructor's Convolution code slides use specific numbers — a 5×5 image with values like 10, 10, 10, 0, 0 — and show the actual computed output (30, 30, 0), making the operation verifiable by hand. My early iterations lacked this concreteness, reducing the pedagogical utility.</p>
+<h3>The Golden Rule Prompt</h3>
+<p>"Before explaining any algorithm or concept, first state the one problem it is solving and why naive approaches fail. Then walk through the solution using a specific, small numerical example before introducing any formal notation or general rules. At the end, state one thing that is still confusing or a common misconception, and resolve it explicitly."</p>
+</body>
+</html>
